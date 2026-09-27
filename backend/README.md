@@ -162,7 +162,7 @@ src/
 
 ## Tests
 
-Jest is wired up (`jest.config.ts`, `npm test`), but the scaffolded spec files don't provide mock providers for the injected repositories/JwtService, so 5 of 6 suites currently fail with "Nest can't resolve dependencies". The running app is unaffected. To satisfy the "unit test for 1 route" bonus properly, the specs need mock providers added (or the unused ones removed).
+`npm test` runs the Jest unit tests — 31 tests across six suites: the leads controller routes (create, list vs search, 404 on a missing lead, notes), the leads service (pagination, note linking, the search query), auth (login success and both 401 cases, admin seeding) and the JWT strategy. All pass.
 
 ## Known notes
 

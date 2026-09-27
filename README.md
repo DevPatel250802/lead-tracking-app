@@ -207,7 +207,7 @@ All 7 API endpoints | Done (`GET /api/leads?search=&status=`: the `status` filte
 Validation + errors (400/404/201, email format, required fields) | Done via class-validator + global ValidationPipe + exception filter
 Bonus: pagination | Done (leads list and notes, configurable page size)
 Bonus: basic auth | Done (JWT login, bcrypt, guarded routes, seeded admin)
-Bonus: unit test (Jest) | Partial — Jest is configured and spec files exist, but the scaffolded specs are missing dependency mocks, so `npm test` currently fails 5 of 6 suites (see Testing)
+Bonus: unit test (Jest) | Done — 31 unit tests (`cd backend && npm test`) covering the leads routes, service, auth and JWT strategy
 Bonus: Dockerfile | Done — Dockerfile per app + `docker-compose.yml` at the root (`docker compose up --build`)
 `npm install` + dev run works | Done (one install/run per app; see Run the app)
 Seed script or UI to add first lead | Both: admin auto-seeds on boot, leads are created from the UI
@@ -220,7 +220,7 @@ cd backend && npm test
 cd frontend && npm run build
 ```
 
-Known state: the backend's scaffolded spec files (`*.spec.ts`) instantiate the modules without mock providers for the TypeORM repositories / JwtService, so 5 of 6 suites fail with "Nest can't resolve dependencies". The application itself is unaffected — this is a test-setup gap, not a runtime one. The frontend has no test suite; `npm run build` is the verification step.
+The backend suite covers the leads routes (create, list vs search, 404 on a missing lead, notes), the leads service (pagination, note linking, the search query), auth (login success and both 401 cases, admin seeding) and the JWT strategy — 31 Jest unit tests, all passing. The frontend has no test suite; `npm run build` is the verification step.
 
 ## Docker
 
