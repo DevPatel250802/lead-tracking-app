@@ -1,0 +1,18 @@
+services:
+  backend:
+    build: ./backend
+    container_name: lead-backend
+    ports:
+      - "3000:3000"
+    environment:
+      - JWT_SECRET=${JWT_SECRET:-dev-secret-change-me}
+
+  frontend:
+    build: ./frontend
+    container_name: lead-frontend
+    ports:
+      - "5173:5173"
+    environment:
+      - API_PROXY_TARGET=http://backend:3000
+    depends_on:
+      - backend
