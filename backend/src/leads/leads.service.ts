@@ -29,7 +29,6 @@ export class LeadsService {
   }
 
   async findAll(offset: number, limit: number,) {
-    console.log("entry inside fn --> findAll",limit ,offset);
     const [leads,count] = await this.leadRepository.findAndCount(
       {
         skip: offset * limit,
